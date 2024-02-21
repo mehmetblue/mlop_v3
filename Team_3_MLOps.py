@@ -895,3 +895,15 @@ if uploaded_file is not None:
                            data=excel_data,
                            file_name="batch_predictions.xlsx",
                            mime="application/vnd.ms-excel")
+
+# Download as a Excel file
+
+# df_excel = result_df
+st.button('Save Predict as an Excel file')
+result_df.to_excel('prediction.xlsx', index=False)
+
+
+
+if st.button('Save Predict as an Excel file'):
+            result_df.to_excel('prediction.xlsx', index=False)
+            # st.write('result_df')
