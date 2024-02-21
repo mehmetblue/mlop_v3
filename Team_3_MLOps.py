@@ -899,11 +899,19 @@ if uploaded_file is not None:
 # Download as a Excel file
 
 # df_excel = result_df
-st.button('Save Predict as an Excel file')
-result_df.to_excel('prediction.xlsx', index=False)
+# st.button('Save Predict as an Excel file')
+csv_file = result_df.to_csv('prediction.csv', index=False)
 
+# if st.button('Save Predict as an Excel file'):
+#             result_df.to_excel('prediction.xlsx', index=False)
+#             # st.write('result_df')
 
+st.download_button('Download CSV', csv_file, 'text/csv')
+st.download_button('Download CSV', csv_file)  # Defaults to 'text/plain'
 
-if st.button('Save Predict as an Excel file'):
-            result_df.to_excel('prediction.xlsx', index=False)
-            # st.write('result_df')
+with open('myfile.csv') as f:
+   st.download_button('Download CSV', f)  # Defaults to 'text/plain'
+
+if st.download_button(...):
+   st.write('Thanks for downloading!')
+
