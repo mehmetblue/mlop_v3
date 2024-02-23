@@ -10,7 +10,7 @@ from io import BytesIO
 import base64
 import openpyxl
 
-from all_lists import Country_list, YearsCodingProf_list, RaceEthnicity_list, Age_list, Employment_list, FormalEducation_list, CommunicationTools_list, NumberMonitors_list, DevType_list, LastNewJob_list, Student_list, ide_list, data, dictionary, binary_list, numeric_list, column_list_to_map
+from all_lists import Country_list, YearsCodingProf_list, RaceEthnicity_list, Age_list, Employment_list, FormalEducation_list, CommunicationTools_list, NumberMonitors_list, DevType_list, LastNewJob_list, Student_list, ide_list, dictionary, binary_list, numeric_list, column_list_to_map
 
 
 #load the model from disk
