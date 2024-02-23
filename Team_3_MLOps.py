@@ -34,9 +34,6 @@ add_selectbox = st.sidebar.selectbox(
 st.sidebar.info('This app is created to predict Developers Salaries based on Stack Overflow 2018 Developers Survey')
 st.sidebar.image(image)
 
-# Adding the GitHub Repo link at the bottom of the sidebar
-st.sidebar.info('[Project GitHub Repo](https://github.com/mehmetblue/Final_Project_MLOps)')
-
 if add_selectbox == "Online":
     st.info("Please Input data below")
 
@@ -155,9 +152,6 @@ else:
         for j in column_list_to_map:
             df_new_batch[j] = pd.to_numeric(df_new_batch[j], downcast='float')
 
-
-        # print('df_new_batch.info(): ', df_new_batch.info())
-
         if st.button('Predict'):
             prediction = model.predict(df_new_batch)
 
@@ -174,13 +168,14 @@ else:
 
             # Convert DataFrame to CSV string
             csv = result_df.to_csv(index=False)
+            
             # Present the CSV string to the user with the download button
             st.download_button(
                 label="Download data as CSV",
                 data=csv,
                 file_name='prediction_results.csv',
                 mime='text/csv',
-            )
+                )
 
             # Function to download DataFrame as Excel
             def to_excel(df):
@@ -198,4 +193,4 @@ else:
                 data=excel_file,
                 file_name="prediction_results.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+                )
