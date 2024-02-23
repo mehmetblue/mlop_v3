@@ -228,13 +228,13 @@ else:
         output.seek(0)  # Dosya imlecini başa al
         return output
     
-    # DataFrame'i Excel dosyasına dönüştür ve genişlikleri ayarla
-    excel_file = to_excel_auto_width(result_df)
-    
-    # Download button oluştur
-    st.download_button(
-        label="Download data as Excel",
-        data=excel_file,
-        file_name="prediction_results.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+        # DataFrame'i Excel dosyasına dönüştür ve genişlikleri ayarla
+        excel_file = to_excel_auto_width(result_df)
+        
+        # Download button oluştur
+        st.download_button(
+            label="Download data as Excel",
+            data=excel_file,
+            file_name="prediction_results.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
