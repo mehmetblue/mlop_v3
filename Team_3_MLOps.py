@@ -83,6 +83,24 @@ if add_selectbox == "Online":
     st.markdown("<h3></h3>", unsafe_allow_html=True)
     ide = st.selectbox(label = "Which development environment(s) do you use regularly?", options= ide_list)
 
+    data = {
+            'Country_LE': country,
+            'YearsCodingProf' : yearsCodingProf,
+            'RaceEthnicity_LE' : raceEthnicity,
+            'Age' : age,
+            'Employment_LE' : employment,
+            'FormalEducation' : formalEducation,
+            'CommunicationTools_LE' : communicationTools,
+            'AssessBenefits6' : assessBenefits6,
+            'NumberMonitors' : numberMonitors,
+            'DevType_LE' : devType,
+            'AssessBenefits3' : assessBenefits3,
+            'LastNewJob' : lastNewJob,
+            'Student_LE' : student,
+            'IDE_LE' : ide  
+        
+            }
+
     features_df = pd.DataFrame.from_dict([data])
 
     st.markdown("<h3></h3>", unsafe_allow_html=True)
