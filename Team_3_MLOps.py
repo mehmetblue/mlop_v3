@@ -177,20 +177,60 @@ else:
                 mime='text/csv',
                 )
 
-            # Function to download DataFrame as Excel
-            def to_excel(df):
+            # # Function to download DataFrame as Excel
+            # def to_excel(df):
+            #     output = BytesIO()
+            #     with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
+            #         df.to_excel(writer, index=False, sheet_name='Sheet1')
+            #     output.seek(0)  # Dosya imlecini başa alır
+            #     return output
+            
+            
+            # # Convert DataFrame to Excel and create download button
+            # excel_file = to_excel(result_df)
+            # st.download_button(
+            #     label="Download data as Excel",
+            #     data=excel_file,
+            #     file_name="prediction_results.xlsx",
+            #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            #     )
+
+from openpyxl.utils import get_column_letter
+
+            def to_excel_auto_width(df):
                 output = BytesIO()
+                # DataFrame'i Excel dosyasına dönüştür
                 with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
                     df.to_excel(writer, index=False, sheet_name='Sheet1')
-                output.seek(0)  # Dosya imlecini başa alır
+                    workbook = writer.book
+                    worksheet = writer.sheets['Sheet1']
+                    
+                    # Sütun genişliklerini ayarla
+                    for column in worksheet.columns:
+                        max_length = 0
+                        col_idx = column[0].column  # Sütun indeksi (1, 2, 3,...)
+                        
+                        # Sütundaki en uzun veriyi bul
+                        for cell in column:
+                            try:  # Hücrenin içeriğinin uzunluğunu ölç
+                                if len(str(cell.value)) > max_length:
+                                    max_length = len(cell.value)
+                            except:
+                                pass
+                        
+                        # Excel'de sütun genişliğini ayarla
+                        worksheet.column_dimensions[get_column_letter(col_idx)].width = max_length
+            
+                output.seek(0)  # Dosya imlecini başa al
                 return output
             
+            # DataFrame'i Excel dosyasına dönüştür ve genişlikleri ayarla
+            excel_file = to_excel_auto_width(result_df)
             
-            # Convert DataFrame to Excel and create download button
-            excel_file = to_excel(result_df)
+            # Download button oluştur
             st.download_button(
                 label="Download data as Excel",
                 data=excel_file,
                 file_name="prediction_results.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
+            )
