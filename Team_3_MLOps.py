@@ -110,7 +110,9 @@ if add_selectbox == "Online":
 
     for i in column_list_to_map:
         if i in binary_list: 
-            features_df[i][0] = dictionary.get(features_df[i][0])
+            # features_df[i][0] = dictionary.get(features_df[i][0])
+            features_df.loc[i, 0] = dictionary.get(features_df.loc[i, 0])
+            
         else:
             pass
 
