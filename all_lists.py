@@ -51,24 +51,6 @@ Student_list = ["No", "Yes, part-time", "Yes, full-time"]
 ide_list = ["Visual Studio Code", "Visual Studio", "Notepad++", "Sublime Text", "Vim", "IntelliJ", "Android Studio", "Eclipse", "Atom", "PyCharm",
             "Xcode", "PHPStorm", "NetBeans", "IPython / Jupyter", "Emacs", "RStudio", "RubyMine", "TextMate", "Coda", "Komodo", "Zend", "Light Table"]
 
-data = {
-            'Country_LE': country,
-            'YearsCodingProf' : yearsCodingProf,
-            'RaceEthnicity_LE' : raceEthnicity,
-            'Age' : age,
-            'Employment_LE' : employment,
-            'FormalEducation' : formalEducation,
-            'CommunicationTools_LE' : communicationTools,
-            'AssessBenefits6' : assessBenefits6,
-            'NumberMonitors' : numberMonitors,
-            'DevType_LE' : devType,
-            'AssessBenefits3' : assessBenefits3,
-            'LastNewJob' : lastNewJob,
-            'Student_LE' : student,
-            'IDE_LE' : ide  
-        
-                        }
-
 dictionary = {
         'Afghanistan' : 0,
         'Albania' : 1,
