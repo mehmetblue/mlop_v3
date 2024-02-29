@@ -9,7 +9,7 @@ import joblib
 from io import BytesIO
 import base64
 import openpyxl
-import to_excel_auto_width
+from to_excel_auto_width import to_excel_auto_width
 
 from openpyxl.utils import get_column_letter
 
