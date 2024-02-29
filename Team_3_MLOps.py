@@ -9,7 +9,7 @@ import joblib
 from io import BytesIO
 import base64
 import openpyxl
-from to_excel_v1 import to_excel_auto_width
+# from to_excel_v1 import to_excel_auto_width
 
 from openpyxl.utils import get_column_letter
 
@@ -180,7 +180,26 @@ else:
                 file_name='prediction_results.csv',
                 mime='text/csv',
                 )
-
+            def to_excel_auto_width(df):
+                output = BytesIO()
+                # Convert DataFrame to an Excel file
+                with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
+                    df.to_excel(writer, index=False, sheet_name='Sheet1')
+                    workbook = writer.book
+                    worksheet = writer.sheets['Sheet1']
+                    
+                    # Adjust column widths
+                    for col_num, column in enumerate(worksheet.iter_cols(min_row=1, max_row=worksheet.max_row), start=1):
+                        max_length = 0
+                        for cell in column:
+                            cell_length = len(str(cell.value))
+                            max_length = max(max_length, cell_length)
+                        
+                        # Set the column width in Excel, adding a bit extra space by using +2
+                        worksheet.column_dimensions[get_column_letter(col_num)].width = max_length + 2
+            
+                output.seek(0)  # Reset the file pointer to the beginning
+                return output
 
 
             excel_file = to_excel_auto_width(result_df)
@@ -190,43 +209,3 @@ else:
                 file_name="prediction_results.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-
-
-    
-    # def to_excel_auto_width(df):
-    #     output = BytesIO()
-    #     # DataFrame'i Excel dosyasına dönüştür
-    #     with pd.ExcelWriter(output, engine='openpyxl', mode='w') as writer:
-    #         df.to_excel(writer, index=False, sheet_name='Sheet1')
-    #         workbook = writer.book
-    #         worksheet = writer.sheets['Sheet1']
-            
-    #         # Sütun genişliklerini ayarla
-    #         for column in worksheet.columns:
-    #             max_length = 0
-    #             col_idx = column[0].column  # Sütun indeksi (1, 2, 3,...)
-                
-    #             # Sütundaki en uzun veriyi bul
-    #             for cell in column:
-    #                 try:  # Hücrenin içeriğinin uzunluğunu ölç
-    #                     if len(str(cell.value)) > max_length:
-    #                         max_length = len(cell.value)
-    #                 except:
-    #                     pass
-                
-    #             # Excel'de sütun genişliğini ayarla
-    #             worksheet.column_dimensions[get_column_letter(col_idx)].width = max_length
-    
-    #     output.seek(0)  # Dosya imlecini başa al
-    #     return output
-    
-    #     # DataFrame'i Excel dosyasına dönüştür ve genişlikleri ayarla
-    #     excel_file = to_excel_auto_width(result_df)
-        
-    #     # Download button oluştur
-    #     st.download_button(
-    #         label="Download prediction as an Excel file",
-    #         data=excel_file,
-    #         file_name="prediction_results.xlsx",
-    #         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    #     )
