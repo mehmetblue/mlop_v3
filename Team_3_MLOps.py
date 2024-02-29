@@ -12,8 +12,7 @@ import openpyxl
 
 from openpyxl.utils import get_column_letter
 
-from all_lists import Country_list, YearsCodingProf_list, RaceEthnicity_list, Age_list, Employment_list, FormalEducation_list, CommunicationTools_list, NumberMonitors_list, DevType_list, LastNewJob_list, Student_list, ide_list, dictionary, binary_list, numeric_list, column_list_to_map
-
+from all_lists import *
 
 #load the model from disk
 filename = "catb_model_24outbaski.sav"
