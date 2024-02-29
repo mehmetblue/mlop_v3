@@ -1,3 +1,7 @@
+import pandas as pd
+from openpyxl.utils import get_column_letter
+from io import BytesIO
+
 def to_excel_auto_width(df):
     output = BytesIO()
     # Convert DataFrame to an Excel file
