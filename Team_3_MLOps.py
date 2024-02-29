@@ -9,6 +9,7 @@ import joblib
 from io import BytesIO
 import base64
 import openpyxl
+import to_excel_auto_width
 
 from openpyxl.utils import get_column_letter
 
@@ -200,6 +201,16 @@ else:
 
 
 
+    # excel_file = to_excel_auto_width(result_df)
+    st.download_button(
+        label="Download prediction as an Excel file",
+        data=excel_file,
+        file_name="prediction_results.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+
+    
     def to_excel_auto_width(df):
         output = BytesIO()
         # DataFrame'i Excel dosyasına dönüştür
