@@ -174,7 +174,7 @@ else:
             
             # Present the CSV string to the user with the download button
             st.download_button(
-                label="Download data as CSV",
+                label="Download predictin as a CSV file",
                 data=csv,
                 file_name='prediction_results.csv',
                 mime='text/csv',
@@ -232,7 +232,7 @@ else:
         
         # Download button oluştur
         st.download_button(
-            label="Download data as Excel",
+            label="Download prediction as an Excel file",
             data=excel_file,
             file_name="prediction_results.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
