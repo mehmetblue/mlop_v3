@@ -194,6 +194,7 @@ else:
     st.subheader("Dataset upload")
     # Link for downloading the sample dataset
     st.markdown("Download a sample dataset from [this link](https://github.com/mehmetblue/mlop_v3/blob/main/for_test_random_hundred_row_v1.csv).")
+    st.markdown("")
     uploaded_file = st.file_uploader("Choose a file. Then the prediction results will be appended as the last column.")
     if uploaded_file is not None:
         df_batch = pd.read_csv(uploaded_file, encoding='utf-8', low_memory=False, index_col=False)
