@@ -131,71 +131,11 @@ if add_selectbox == "Online":
         info_message = f"Predicted value: $ {prediction_value}"
         st.info(info_message)
 
-# else:
-#     st.subheader("Dataset upload")
-#     uploaded_file = st.file_uploader("Choose a file")
-#     if uploaded_file is not None:
-#         df_batch = pd.read_csv(uploaded_file,encoding= 'utf-8', low_memory=False, index_col=False)
-#         st.write(df_batch)
-#         st.markdown("<h3></h3>", unsafe_allow_html=True)
-        
-#         #Preprocess inputs        
-#         df_new_batch = pd.DataFrame(columns=column_list_to_map)
-
-#         for i in column_list_to_map:
-#             if i in binary_list:
-#                 df_new_batch[i] = df_batch[i].map(dictionary)
-            
-#             else:
-#                 counter = 0
-#                 while counter < df_batch.shape[0]:                    
-#                     df_new_batch[i][counter] = df_batch[i][counter]
-#                     counter += 1
-
-#         for j in column_list_to_map:
-#             df_new_batch[j] = pd.to_numeric(df_new_batch[j], downcast='float')
-
-#         if st.button('Predict'):
-#             prediction = model.predict(df_new_batch)
-
-#             prediction_df = pd.DataFrame(prediction, columns=["Prediction_$"])
-
-#             # Dropping the decimal parts of the data in the "Prediction_$" column and using a dot as the thousands separator
-#             prediction_df['Prediction_$'] = prediction_df['Prediction_$'].astype(float).map(lambda x: "{:,.0f}".format(x).replace(',', '.'))
-
-#             result_df = pd.concat([df_batch, prediction_df], axis=1, ignore_index=False, sort=False)
-
-#             st.markdown("<h3></h3>", unsafe_allow_html=True)
-#             st.subheader('Prediction')
-#             st.write(result_df)
-
-#             # Convert DataFrame to CSV string
-#             csv = result_df.to_csv(index=False)
-            
-#             # Present the CSV string to the user with the download button
-#             st.download_button(
-#                 label="Download predictin as a CSV file",
-#                 data=csv,
-#                 file_name='prediction_results.csv',
-#                 mime='text/csv',
-#                 )
-
-
-#             excel_file = to_excel_auto_width(result_df)
-#             st.download_button(
-#                 label="Download prediction as an Excel file",
-#                 data=excel_file,
-#                 file_name="prediction_results.xlsx",
-#                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-#             )
-
-
 else:
     st.subheader("Dataset upload")
     # Link for downloading the sample dataset
     st.markdown("Download a sample dataset from [this link](https://github.com/mehmetblue/mlop_v3/blob/main/for_test_random_hundred_row_v1.csv).")
     uploaded_file = st.file_uploader("Choose a file. Then the prediction results will be appended as the last column.")
-    st.markdown("test")
     if uploaded_file is not None:
         df_batch = pd.read_csv(uploaded_file, encoding='utf-8', low_memory=False, index_col=False)
         st.write(df_batch)
